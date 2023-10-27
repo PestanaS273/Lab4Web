@@ -24,9 +24,6 @@ export default {
 
 //       };
 //   },
-state: {
-  user: null,
-},
   computed: {
   user() {
     return this.$store.state.user;

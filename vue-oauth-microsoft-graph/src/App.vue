@@ -1,4 +1,3 @@
-<!-- App.vue -->
 <template>
   <BaseLayout>
     <template v-slot:header>
