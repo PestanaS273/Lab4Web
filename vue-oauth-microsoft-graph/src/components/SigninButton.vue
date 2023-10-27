@@ -18,21 +18,29 @@ export default {
   // components: {
   //     AsyncButton,
   // },
-  data() {
-      return {
-          user: null,
+//   data() {
+//       return {
+//           user: null,
 
-      };
-  },
+//       };
+//   },
+state: {
+  user: null,
+},
+  computed: {
+  user() {
+    return this.$store.state.user;
+  }
+},
   methods: {
-      async signIn(){
-          try {
-              const user = await signInAndGetUser();
-              this.user = user;
-          } catch (error) {
-              console.error("Sign-in error:", error);
-          }
-      },
+    async signIn() {
+      try {
+        const user = await signInAndGetUser();
+        this.$store.commit('setUser', user);
+      } catch (error) {
+        console.error('Sign-in error:', error);
+      }
+    },
   },
 };
 
