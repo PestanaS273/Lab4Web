@@ -21,7 +21,6 @@ export default{
 <template>
     <button :class="['button', `button-${color}`]">
 
-      {{ color }}
       <!-- The slot can be used to pass the button label from the parent -->
       <slot></slot> 
     </button>

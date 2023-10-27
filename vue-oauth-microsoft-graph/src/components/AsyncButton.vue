@@ -1,9 +1,8 @@
 <template>
     <BaseButton
       :disabled="isPending"
-      v-bind="$attrs"
       :color="color"
-      @click.stop.prevent="handleClick"
+      @click="handleClick"
     >
       <font-awesome-icon
         v-if="isPending"
@@ -32,24 +31,24 @@
   
     data () {
       return {
-        isPending: false
+        isPending: false,
+        delay: 2000
       }
     },
-    onClick: {
-      type: Function,
-      required: true
-    },
-  
     methods: {
-      handleClick() {
-      if (typeof this.onClick === 'function') {
-        const originalOnClick = this.onClick;
-        this.isPending = true;
-        originalOnClick().finally(() => {
-          this.isPending = false;
-        });
-      }
+        async handleClick () {
+            if (this.isPending) return; 
+
+            this.isPending = true;
+
+            await new Promise(resolve => setTimeout(resolve, this.delay));
+
+            this.isPending = false;
+
+            this.delay += 1000; 
+            this.$emit('click');
+        }
     }
-  }}
+  }
   </script>
   

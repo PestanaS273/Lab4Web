@@ -1,51 +1,42 @@
 <template>
-  <AsyncButton :onClick="fetchUser" color="primary">
-    Sign in with Microsoft
-  </AsyncButton>
+  <div>
+    <AsyncButton @click="signIn">Sign In</AsyncButton>
+
+      <div v-if="user">
+          <p>Welcome {{ user.name }} !</p>
+
+      </div>
+    
+  </div>
 </template>
 
 <script>
-import AsyncButton from "./AsyncButton.vue";
-import { PublicClientApplication } from '@azure/msal-browser';
-
-const msalConfig = {
-  auth: {
-    clientId: process.env.VUE_APP_OAUTH_CLIENT_ID
-  },
-  cache: {
-    cacheLocation: "sessionStorage"
-  }
-};
-
-const msalInstance = new PublicClientApplication(msalConfig);
+import {signInAndGetUser} from '../services/PublicClientApplication.js'
+import AsyncButton from './AsyncButton.vue';
 
 export default {
-  name: 'SigninButton',
   components: {
-    AsyncButton
+      AsyncButton,
+  },
+  data() {
+      return {
+          user: null,
+
+      };
   },
   methods: {
-    async fetchUser() {
-      console.log('fetchUser called');
-      try {
-        this.isPending = true;
-        await msalInstance.initialize();
-        const authResult = await msalInstance.loginPopup({
-          scopes: ["User.Read"]
-        });
-        msalInstance.setActiveAccount(authResult.account);
-        console.log(authResult.account);
-        this.$emit('authenticated', authResult.account);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        this.isPending = false;
-      }
-    }
-  }
+      async signIn(){
+          try {
+              const user = await signInAndGetUser();
+              this.user = user;
+          } catch (error) {
+              console.error("Sign-in error:", error);
+          }
+      },
+  },
 };
-</script>
 
+</script>
 <style scoped>
 /* Add any styles here */
 </style>
