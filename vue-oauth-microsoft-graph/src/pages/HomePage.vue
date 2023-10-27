@@ -9,9 +9,7 @@
     <AsyncButton @click="handleButtonClick" :is-pending="isPending">
       Click Me
     </AsyncButton>
-    <SigninButton>
-            Click Me
-    </SigninButton>
+
   </div>
   <div class="card-footer text-body-secondary">
     2 days ago
@@ -23,13 +21,11 @@
 
 <script>
 import AsyncButton from '../components/AsyncButton.vue'
-import SigninButton from '../components/SigninButton.vue'
 
 export default {
   name: 'HomePage',
   components: {
-    AsyncButton,
-    SigninButton
+    AsyncButton
   },
   methods: {
     async handleButtonClick() {

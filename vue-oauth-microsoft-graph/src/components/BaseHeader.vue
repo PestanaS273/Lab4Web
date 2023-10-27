@@ -37,7 +37,7 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav d-flex align-items-center flex-row-reverse w-50">
-                    <li class="nav-item"><a href="#" class="nav-link">Basket</a></li>
+                    <li class="nav-item"><SigninButton>Click Me</SigninButton></li>
                     <li class="nav-item"><router-link to="/user" class="nav-link">Login</router-link></li>
                     <form class="nav-item d-flex w-50" role="search">
                         <input class="form-control me-2" type="search" placeholder="Write here.." aria-label="Search">
@@ -50,9 +50,12 @@
 </template>
 
 <script>
+import SigninButton from '../components/SigninButton.vue'
 export default {
-  name: 'BaseHeader'
-
+  name: 'BaseHeader',
+  components: {
+    SigninButton
+  },
 }
 </script>
 
