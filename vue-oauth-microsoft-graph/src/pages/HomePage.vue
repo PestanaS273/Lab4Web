@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     async handleButtonClick() {
-      this.isPending = true
       this.clickCount += 1; 
 
       await new Promise((resolve) => {

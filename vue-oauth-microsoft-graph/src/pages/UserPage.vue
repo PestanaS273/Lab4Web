@@ -2,7 +2,7 @@
     <div>
         <h1>User Page</h1>
         <div>
-            <SigninButton @click="handleButtonClick" :is-pending="isPending">
+            <SigninButton>
             Click Me
             </SigninButton>
             <p>Welcome, {{ user.name }}!</p>
@@ -20,19 +20,6 @@ export default {
   name: 'UserPage',
   components: {
     SigninButton
-  },
-  methods: {
-    async handleButtonClick() {
-      this.isPending = true
-      this.clickCount += 1; 
-
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve()
-        }, this.clickCount * 1000); 
-      })
-      this.isPending = false
-    }
   },
   data() {
     return {

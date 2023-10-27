@@ -1,7 +1,7 @@
 <template>
   <div>
-    <AsyncButton @click="signIn">Sign In</AsyncButton>
-
+    <!-- <AsyncButton @click="signIn">Sign In</AsyncButton> -->
+    <button @click="signIn">Sign In</button>
       <div v-if="user">
           <p>Welcome {{ user.name }} !</p>
 
@@ -12,12 +12,12 @@
 
 <script>
 import {signInAndGetUser} from '../services/PublicClientApplication.js'
-import AsyncButton from './AsyncButton.vue';
+// import AsyncButton from './AsyncButton.vue';
 
 export default {
-  components: {
-      AsyncButton,
-  },
+  // components: {
+  //     AsyncButton,
+  // },
   data() {
       return {
           user: null,
