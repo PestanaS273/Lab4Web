@@ -1,25 +1,5 @@
-<!-- <template>
-    <ul class="nav nav-pills nav-fill">
-        <li class="nav-item">
-        <a class="nav-link" href="#">Nice Button</a>
-        </li>
-    </ul>
-</template>
-
-<script>
-export default{
-    name: 'BaseButton'
-}
-</script>
-<style scoped>
-.nav-link:hover {
-    background-color: lightgreen !important; 
-}
-</style> -->
-
-<!-- BaseButton.vue -->
 <template>
-    <button :class="['button', `button-${color}`]">
+    <button :class="['button', `button-${color}`, buttonClasses] " @click="onClick">
 
       <!-- The slot can be used to pass the button label from the parent -->
       <slot></slot> 
@@ -38,7 +18,13 @@ export default{
           return ['primary', 'warn', 'danger'].includes(value)
         }
       }
-    }
+    },
+    methods: {
+      onClick() {
+        this.$emit('click');
+      },
+    },
+
   }
   </script>
   

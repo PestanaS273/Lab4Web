@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {signInAndGetUser} from '../services/PublicClientApplication.js'
+import {signInAndGetUser} from '../lib/microsoftGraph'
 // import AsyncButton from './AsyncButton.vue';
 
 export default {

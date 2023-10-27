@@ -1,18 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
-import {msalInstance} from '../services/PublicClientApplication.js'
-import UserPage from '../pages/UserPage.vue'
+import {msalInstance} from '../lib/microsoftGraph.js'
 
 const routes = [
     {
         path: '/',
         name: 'HomePage',
         component: HomePage
-    },
-    {
-        path: '/user',
-        name: 'UserPage',
-        component: UserPage
     },
 ]
 
@@ -25,7 +19,7 @@ router.beforeEach(async (to, from, next) => {
         const account = msalInstance.getActiveAccount();
 
         if (!account) {
-            next('/user');
+            next('/');
         } else {
             next();
         }
